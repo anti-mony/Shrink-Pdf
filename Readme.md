@@ -1,5 +1,5 @@
 # Pdf Shrinking Web App
-======
+
 
 A Webapp to shrink Pdf files based on:
 
