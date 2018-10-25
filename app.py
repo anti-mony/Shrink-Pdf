@@ -24,8 +24,10 @@ def shrinkFile():
     # print(f.filename)
     fname = secure_filename(f.filename)
     f.save(os.path.join(app.config['UPLOAD_FOLDER'], fname))
-    subprocess.call(['./Uploads/shrinkpdf.sh','./Uploads/'+fname,"./Uploads/Small_"+resolution+"_"+fname,resolution])
-    
+    try:
+        subprocess.check_call(['./Uploads/shrinkpdf.sh','./Uploads/'+fname,"./Uploads/Small_"+resolution+"_"+fname,resolution])
+    except subprocess.CalledProcessError:
+        errorPage()
     # return url_for(errorPage), 500
     return jsonify(fileURL=url_for('shrinkedFile',filename=fname),
                     cfs=int(os.path.getsize("./Uploads/Small_"+fname)))
