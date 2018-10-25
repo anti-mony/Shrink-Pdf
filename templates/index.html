@@ -43,7 +43,7 @@
                 <label class="label">File to be Shrinked</label>
                 <div class="file has-name is-fullwidth is-warning">
                     <label class="file-label">
-                        <input class="file-input" type="file" name="pdffile" id="file">
+                        <input class="file-input" type="file" name="pdffile" id="file" accept=".pdf">
                         <span class="file-cta">
                             <span class="file-icon">
                                 <i class="fas fa-upload"></i>
@@ -144,6 +144,9 @@
                 document.getElementById('cfs').innerHTML = (data.cfs / 1024).toFixed(3) + ' KB';
                 document.getElementById('percent').innerHTML = ((file.files[0].size - data.cfs) / file.files[0].size).toFixed(3) * 100 + ' %';
                 window.open(data.fileURL)
+            },
+            fail: function(data){
+                window.location.href = data;
             },
             contentType: false,
             processData: false
