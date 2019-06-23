@@ -7,6 +7,10 @@ name = "pypi"
 flask = "*"
 gunicorn = "*"
 schedule = "*"
+itsdangerous = "*"
+hashlib = "*"
+rq = "*"
+redis = "*"
 
 [dev-packages]
 pylint = "*"
