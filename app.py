@@ -19,7 +19,7 @@ q = Queue(connection=conn)
 
 @app.route("/")
 def main():
-    q.enqueue(clean)
+    q.enqueue(uitl.clean)
     return render_template('index.html')
 
 @app.route("/error")
