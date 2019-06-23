@@ -8,7 +8,6 @@ flask = "*"
 gunicorn = "*"
 schedule = "*"
 itsdangerous = "*"
-hashlib = "*"
 rq = "*"
 redis = "*"
 
