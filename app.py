@@ -10,16 +10,12 @@ UPLOAD_FOLDER = './Uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 resolution = ''
 
-from rq import Queue
-from worker import conn
-import uitl
-
-q = Queue(connection=conn)
-
+# from worker import conn
+# import uitl
 
 @app.route("/")
 def main():
-    q.enqueue(uitl.clean)
+    # q.enqueue(uitl.clean)
     return render_template('index.html')
 
 @app.route("/error")
