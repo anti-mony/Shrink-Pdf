@@ -1,159 +1,207 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html style="height: 100%;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pdf Shrinker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"
+    />
+    <link href="dist/pattern.min.css" rel="stylesheet" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+    ></script>
+    
+    </style>
+  </head>
 
-<body>
+  <body style="display: flex; flex-direction: column; height: 100%;">
     <nav class="navbar is-info" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <div class="navbar-item">
-                <h1 class="title">
-                    Pdf-Shrinker
-                </h1>
-            </div>
-        </div>
+      <div class="navbar-brand">
         <div class="navbar-item">
-            <p class="subtitle">
-                Shrink PDF files without compromising a lot of
-                <strong>Quality</strong>!
-            </p>
+          <h1 class="title">
+            Pdf Shrinker
+          </h1>
         </div>
-        <div class="navbar-end">
-            <a href="https://bulma.io">
-                <img src="https://bulma.io/images/made-with-bulma--white.png" alt="Made with Bulma" width="256" height="48">
-            </a>
-        </div>
+      </div>
+      <div class="navbar-item is-hidden-mobile">
+        <p class="subtitle">
+          Shrink PDF files without compromising a lot of
+          <strong>Quality</strong>!
+        </p>
+      </div>
+      <div class="navbar-end is-hidden-mobile">
+        <a href="https://bulma.io">
+          <img
+            src="https://bulma.io/images/made-with-bulma--white.png"
+            alt="Made with Bulma"
+            width="256"
+            height="48"
+          />
+        </a>
+      </div>
     </nav>
-
-
-    <section class="section">
-
+    <div style="flex: 1 0 auto;">
+      <section class="section">
         <form id="data" method="post" enctype="multipart/form-data">
-            <div class="field">
-                <label class="label">Resolution (16 - 256) (Default : 72)</label>
-                <div class="control">
-                    <input class="input" type="number" placeholder="DPI" value="72" name="dpi">
-                </div>
+          <div class="field">
+            <label class="label">Resolution (16 - 256) (Default : 72)</label>
+            <div class="control">
+              <input
+                class="input"
+                type="number"
+                placeholder="DPI"
+                value="72"
+                name="dpi"
+              />
             </div>
-            <div class="field">
-                <label class="label">File to be Shrinked</label>
-                <div class="file has-name is-fullwidth is-warning">
-                    <label class="file-label">
-                        <input class="file-input" type="file" name="pdffile" id="file" accept=".pdf">
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Choose a file…
-                            </span>
-                        </span>
-                        <span class="file-name" id="filename">
-                        </span>
-                    </label>
-                </div>
+          </div>
+          <div class="field">
+            <label class="label">File to be Shrinked</label>
+            <div class="file has-name is-fullwidth is-warning">
+              <label class="file-label">
+                <input
+                  class="file-input"
+                  type="file"
+                  name="pdffile"
+                  id="file"
+                  accept=".pdf"
+                />
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file…
+                  </span>
+                </span>
+                <span class="file-name" id="filename"> </span>
+              </label>
             </div>
-            <input class="button is-link is-fullwidth" type="submit" value="Shrink">
+          </div>
+          <input
+            class="button is-link is-fullwidth"
+            type="submit"
+            value="Shrink"
+          />
         </form>
-    </section>
-    <section class="hero is-primary is-bold">
+      </section>
+      <section class="hero is-primary is-bold">
         <div class="hero-body">
-            <div class="is-fluid">
-                <div class="columns">
-                    <div class="column">
-                        <h1 class="title">
-                            File Size
-                        </h1>
-                        <h2 class="subtitle">
-                            Statistics
-                        </h2>
-                    </div>
-                    <div class="column has-text-centered">
-                        <h1 class="subtitle">
-                            Original Size
-                        </h1>
-                        <h2 class="title" id="ofs">
-
-                        </h2>
-                    </div>
-                    <div class="column has-text-centered">
-                        <h1 class="subtitle">
-                            Compressed Size
-                        </h1>
-                        <h2 class="title" id="cfs">
-
-                        </h2>
-                    </div>
-                    <div class="column has-text-centered">
-                        <h1 class="subtitle">
-                            Percentage
-                        </h1>
-                        <h2 class="title" id="percent">
-
-                        </h2>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="hero is-warning is-bold">
-        <div class="hero-body">
-            <div class="container">
-                <h2 class="subtitle">
-                        Thanks To:
-                </h2>
-                <h1 class="columns title">
-                    <section class="column">
-                        Alfred Klomp
-                        <a href="http://www.alfredklomp.com/programming/shrinkpdf/"> (Shrinkpdf.sh) </a>
-                    </section>
-                    <section class="column has-text-right">
-                        <a href="https://tldrlegal.com/license/bsd-3-clause-license-%28revised%29">BSD-3 Licensed</a>
-                    </section>    
+          <div class="is-fluid">
+            <div class="columns">
+              <div class="column">
+                <h1 class="title">
+                  File Size
                 </h1>
+                <h2 class="subtitle">
+                  Statistics
+                </h2>
+              </div>
+              <div class="column has-text-centered">
+                <h1 class="subtitle">
+                  Original Size
+                </h1>
+                <h2 class="title" id="ofs"></h2>
+              </div>
+              <div class="column has-text-centered">
+                <h1 class="subtitle">
+                  Compressed Size
+                </h1>
+                <h2 class="title" id="cfs"></h2>
+              </div>
+              <div class="column has-text-centered">
+                <h1 class="subtitle">
+                  Percentage
+                </h1>
+                <h2 class="title" id="percent"></h2>
+              </div>
             </div>
+          </div>
         </div>
+      </section>
+      <div id="filler"></div>
+    </div>
+
+    <section class="hero is-warning is-bold" style="flex-shrink: 0;">
+      <div class="hero-body">
+        <div class="is-fluid">
+          <div class="columns is-centered is-vcentered has-text-centered">
+            <div class="column">
+              <h2 class="subtitle">
+                Thanks To:
+              </h2>
+              <h1 class="title">
+                Alfred Klomp
+                <a href="http://www.alfredklomp.com/programming/shrinkpdf/">
+                  (Shrinkpdf.sh)
+                </a>
+              </h1>
+            </div>
+            <div class="column">
+              <a href="https://bulma.io">
+                <img
+                  src="https://bulma.io/images/made-with-bulma--semiblack.png"
+                  alt="Made with Bulma"
+                  width="256"
+                  height="48"
+                  class="is-vcentered"
+                />
+              </a>
+            </div>
+            <div class="column">
+              <h1 class="title">
+                <a
+                  href="https://tldrlegal.com/license/bsd-3-clause-license-%28revised%29"
+                  >BSD-3 Licensed</a
+                >
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-<script>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"
+  ></script>
+  <script>
     var file = document.getElementById("file");
     file.onchange = function () {
-        if (file.files.length > 0) {
-            document.getElementById('filename').innerHTML = file.files[0].name;
-            document.getElementById('ofs').innerHTML = (file.files[0].size / 1024).toFixed(3) + ' KB';
-            // console.log(file.files[0].size)
-        }
+      if (file.files.length > 0) {
+        document.getElementById("filename").innerHTML = file.files[0].name;
+        document.getElementById("ofs").innerHTML =
+          (file.files[0].size / 1024).toFixed(3) + " KB";
+      }
     };
     $("form#data").submit(function (e) {
-        e.preventDefault();
-        var formData = new FormData(this);
+      e.preventDefault();
+      var formData = new FormData(this);
 
-        $.ajax({
-            url: '/shrink',
-            type: 'POST',
-            data: formData,
-            cache: false,
-            success: function (data) {
-                document.getElementById('cfs').innerHTML = (data.cfs / 1024).toFixed(3) + ' KB';
-                document.getElementById('percent').innerHTML = ((file.files[0].size - data.cfs) / file.files[0].size).toFixed(3) * 100 + ' %';
-                window.open(data.fileURL)
-            },
-            fail: function(data){
-                window.location.href = data;
-            },
-            contentType: false,
-            processData: false
-        });
+      $.ajax({
+        url: "/shrink",
+        type: "POST",
+        data: formData,
+        cache: false,
+        success: function (data) {
+          document.getElementById("cfs").innerHTML =
+            (data.cfs / 1024).toFixed(3) + " KB";
+          document.getElementById("percent").innerHTML =
+            ((file.files[0].size - data.cfs) / file.files[0].size).toFixed(3) *
+              100 +
+            " %";
+          window.open(data.fileURL);
+        },
+        fail: function (data) {
+          window.location.href = data;
+        },
+        contentType: false,
+        processData: false,
+      });
     });
-</script>
-
+  </script>
 </html>
