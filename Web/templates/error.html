@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pdf Shrinker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+</head>
+
+<body style="display: flex; flex-direction: column; height: 100%;">
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <div class="navbar-item">
+            <h1 class="title">
+              Pdf Shrinker
+            </h1>
+          </div>
+        </div>
+        <div class="navbar-item is-hidden-mobile">
+          <p class="subtitle">
+            Shrink PDF files without compromising a lot of
+            <strong>Quality</strong>!
+          </p>
+        </div>
+      </nav>
+    <section class="hero is-bold" style="flex: 1 0 auto;">
+        <div class="hero-body is-vertical-center">
+            <div class="container">
+                <h1 class="title">
+                    Ooooops... Something went wrong!
+                </h1>
+                <h2 class="subtitle">
+                    Please try again later
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-primary is-bold" id="goback">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Go Back
+                </h1>
+                <h2 class="subtitle">
+                    Obviously, only if you want to
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-warning is-bold" style="flex-shrink: 0;">
+        <div class="hero-body">
+          <div class="is-fluid">
+            <div class="columns is-centered is-vcentered has-text-centered">
+              <div class="column">
+                <h2 class="subtitle">
+                  Thanks To:
+                </h2>
+                <h1 class="title">
+                  Alfred Klomp
+                  <a href="http://www.alfredklomp.com/programming/shrinkpdf/">
+                    (Shrinkpdf.sh)
+                  </a>
+                </h1>
+              </div>
+              <div class="column">
+                <a href="https://bulma.io">
+                  <img
+                    src="https://bulma.io/images/made-with-bulma--semiblack.png"
+                    alt="Made with Bulma"
+                    width="256"
+                    height="48"
+                    class="is-vcentered"
+                  />
+                </a>
+              </div>
+              <div class="column">
+                <a href="https://github.com/anti-mony/shrink-pdf">
+                  <img
+                    src="/static/images/GitHub_Logo.png"
+                    alt="Github Repository Link"
+                    width="128"
+                    height="128"
+                    class="is-vcentered"
+                  />
+                </a>
+              </div>
+              <div class="column">
+                <h1 class="title">
+                  <a
+                    href="https://tldrlegal.com/license/bsd-3-clause-license-%28revised%29"
+                    >BSD-3 Licensed</a
+                  >
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <script>
+        backButton = document.getElementById("goback");
+        backButton.onclick = function () {
+            window.location.href = "/";
+        };
+    </script>
+</body>
+
+</html>
