@@ -1,13 +1,17 @@
 FROM python:3.8.4-alpine3.12
 
-# set work directory
+# Set work directory
 WORKDIR /usr/src/app
 
-# install dependencies
+# Install dependencies
 RUN apk add ghostscript --no-cache
 RUN pip install --upgrade pip
 COPY ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
-# copy project
+# Copy project
 COPY . /usr/src/app/
+
+# Change the cron job according to your needs
+# Add Auto Delete Cron Job
+COPY ./cleardata.sh /etc/periodic/hourly/

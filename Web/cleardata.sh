@@ -1,0 +1,1 @@
+find /usr/src/app/Uploads -name "*.pdf" -mmin 15 -delete
