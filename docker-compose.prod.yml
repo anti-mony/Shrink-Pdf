@@ -3,8 +3,17 @@ version: '3.8'
 services:
   web:
     build: ./Web
+    image: shrinkpdf.web
     command: gunicorn --bind 0.0.0.0:5000 app:app
-    ports:
-      - "5000:5000"
+    expose: 
+      - "5000"
     env_file:
       - ./.env.prod
+
+  nginx:
+    build: ./Nginx
+    image: shrinkpdf.nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
