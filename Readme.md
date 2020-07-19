@@ -4,8 +4,8 @@ A Webapp to shrink Pdf files based on:
 * Backend: Flask & [Shrinkpdf.sh](http://www.alfredklomp.com/programming/shrinkpdf/)
 * Frontend: Bulma
 
-A live version can be found here on Heroku: [ShrinkPdf](https://shrink-pdf.herokuapp.com/). 
-There's a limit of 5MB uploads in this version. Heroku free version limits :( 
+A live version can be found here on Heroku: [ShrinkPdf](https://shrinkpdf.azurewebsites.net/). 
+This is just a trial, it might be down sometimes if I exceed monthly limits.
 
 > The app deletes the files every hour automatically using a cron job. It's just a simple find and delete.
 
