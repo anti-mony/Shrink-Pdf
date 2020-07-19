@@ -32,14 +32,14 @@ def shrinkFile():
         subprocess.check_call(['./Uploads/shrinkpdf.sh','./Uploads/'+fname,"./Uploads/Shrinked_"+resolution+"_"+fname,resolution])
     except Exception as e:
         print(e, file=sys.stderr)
-        return url_for('errorPage'),500
+        return jsonify(url_for('errorPage')),500
 
     try:
         return jsonify(fileURL=url_for('shrinkedFile',filename='Shrinked_'+resolution+"_"+fname),
                     cfs=int(os.path.getsize("./Uploads/Shrinked_"+resolution+"_"+fname)))
     except Exception as e:
         print(e, file=sys.stderr)
-        return url_for('errorPage'),500
+        return jsonify(url_for('errorPage')),500
  
 @app.route('/Uploads/<filename>')
 def shrinkedFile(filename):
