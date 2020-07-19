@@ -4,6 +4,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pdf Shrinker</title>
+
+    <link rel="shortcut icon" href="/static/images/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/images/favicon-16x16.png"
+    />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"
@@ -171,11 +191,7 @@
       </div>
     </section>
   </body>
-  <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"
-  ></script>
+
   <script>
     // Display Stats
     var file = document.getElementById("file");
@@ -187,41 +203,56 @@
       }
     };
 
-    // Loading Animation
-    var $loading = $("#loader").hide();
-    $(document)
-      .ajaxStart(function () {
-        $loading.show();
-      })
-      .ajaxStop(function () {
-        $loading.hide();
-      });
-
     // Form Control
-    $("form#data").submit(function (e) {
+    document.getElementById("data").addEventListener("submit", function (e) {
       e.preventDefault();
       var formData = new FormData(this);
 
-      $.ajax({
-        url: "/shrink",
-        type: "POST",
-        data: formData,
-        cache: false,
-        success: function (data) {
+      if (file.files.length < 1) {
+        alert(
+          "Please select a file before, shrinking. We don't want to shrink emptiness. "
+        );
+        return;
+      }
+
+      loader();
+
+      fetch("/shrink", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw response;
+        })
+        .then((data) => {
           document.getElementById("cfs").innerHTML =
             (data.cfs / 1024).toFixed(3) + " KB";
           document.getElementById("percent").innerHTML =
-            ((file.files[0].size - data.cfs) / file.files[0].size).toFixed(3) *
-              100 +
-            " %";
+            (
+              ((file.files[0].size - data.cfs) / file.files[0].size) *
+              100
+            ).toFixed(3) + " %";
+          loader();
           window.open(data.fileURL);
-        },
-        error: function (request, status, error) {
-          window.location.href = request.responseText;
-        },
-        contentType: false,
-        processData: false,
-      });
+        })
+        .catch((error) => {
+          error.text().then((msg) => (window.location.href = msg.slice(2, -2)));
+        });
+
+      loader();
     });
+
+    // Loading Animation Controller
+    function loader() {
+      var x = document.getElementById("loader");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
   </script>
 </html>
